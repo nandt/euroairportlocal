@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About</title>
+<style type="text/css" media="all">
+<!--
+@import url("css/bill_euroairport.css");
+-->
+</style>
+
+
+</head>
+ <body>
+        <div data-role="view" data-title="Info" id="info">
+            <div style="width:100%; text-align: center">
+				<h1>Using Google Maps<br />in KendoUI application</h1>
+			</div>
+        </div>
+		
+		<!-- hook up to the init event of the view and initialize the google map -->
+        <div data-role="view" data-init="buildMap" id="map" data-title="Map">
+            <div id="map_canvas" style="width:100%;"></div>
+        </div>
+
+        <div data-role="layout" data-id="default2">
+            <div data-role="header">
+                <div data-role="navbar">
+                    <span data-role="view-title"></span>
+                </div>
+            </div>
+
+            <div data-role="footer">
+                <div data-role="tabstrip">
+                    <a href="#info" data-icon="info">Info</a>
+                    <a href="#map.html" data-icon="globe">Map</a>
+                </div>
+            </div>
+        </div>
+
+    
+    </body></html>

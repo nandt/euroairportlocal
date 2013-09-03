@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+        <title>GoogleMap and KendoUI</title>
+        <link href="http://cdn.kendostatic.com/2012.1.515/styles/kendo.mobile.all.min.css" rel="stylesheet" />
+        <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+        <script src="http://cdn.kendostatic.com/2012.1.515/js/kendo.mobile.min.js"></script>
+		
+		<!-- add the google maps scripts -->
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAJSHUzMk7sdqNVSZ-xC6wzkgh7-MacPaU&sensor=true"></script>
+		
+		<!-- The following style is used to disable the scroller and set the correct height for the map element -->
+        <style>
+            #map .km-content,
+            #map .km-scroll-container,
+            #map #map_canvas {
+                display: -webkit-box;
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div data-role="view" data-title="Info" id="info">
+            <div style="width:100%; text-align: center">
+				<h1>Using Google Maps<br />in KendoUI application</h1>
+			</div>
+        </div>
+		
+		<!-- hook up to the init event of the view and initialize the google map -->
+        <div data-role="view" data-init="buildMap" id="map" data-title="Map">
+            <div id="map_canvas" style="width:100%;"></div>
+        </div>
+
+        <div data-role="layout" data-id="default">
+            <div data-role="header">
+                <div data-role="navbar">
+                    <span data-role="view-title"></span>
+                </div>
+            </div>
+
+            <div data-role="footer">
+                <div data-role="tabstrip">
+                    <a href="#info" data-icon="info">Info</a>
+                    <a href="#map" data-icon="globe">Map</a>
+                </div>
+            </div>
+        </div>
+
+    <script>
+        new kendo.mobile.Application(document.body, {layout: "default"});
+		
+		//initialize the google map
+        function buildMap(e) {
+            var myOptions = {
+                center: new google.maps.LatLng(47.598791, 7.529124),
+                zoom: 12,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            var mapElement = $("#map_canvas");
+            var container = e.view.content;
+
+            var map = new google.maps.Map(mapElement[0], myOptions);
+        }
+		
+    </script>
+    </body>
+</html>

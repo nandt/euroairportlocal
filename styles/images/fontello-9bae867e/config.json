@@ -1,0 +1,14 @@
+{
+  "name": "flights",
+  "css_prefix_text": "icon-",
+  "css_use_suffix": false,
+  "hinting": true,
+  "glyphs": [
+    {
+      "uid": "8d673577ce96c5c2eec7f01a251fad26",
+      "css": "flight",
+      "code": 57438,
+      "src": "elusive"
+    }
+  ]
+}

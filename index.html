@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EuroAirport</title>
+
+    <link href="styles/kendo.mobile.flat.min.css" rel="stylesheet"/>
+    <link href="styles/kendo.mobile.ios.min.css" rel="stylesheet"/>
+    <link href="css/euroairport.css" rel="stylesheet"/>
+   
+        <script src="http://cdn.kendostatic.com/2012.1.515/js/kendo.mobile.min.js"></script>
+
+	<!-- add the google maps scripts -->
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAJSHUzMk7sdqNVSZ-xC6wzkgh7-MacPaU&sensor=true&views=traffic"></script>
+		
+		<!-- The following style is used to disable the scroller and set the correct height for the map element -->
+       
+<style>
+            #map .km-content,
+            #map .km-scroll-container,
+            #map #map_canvas {
+                display: -webkit-box;
+                width: 100%;
+            }
+        
+</style>
+
+</head>
+<body>
+<div id="home" data-role="view" data-layout="default3">
+    <div class="ea-list-description-header"><img src="img/PlaneDown.png"/>Next Arrivals</div>
+    <ul data-role="listview" style="font-size: 65%; font-weight: 100 !important;">
+        <li class="ea-flightlist-header"><span class="hour_header">Heure</span><span
+                class="destination_header">Destination</span><span class="flight-no_header">No de vol</span><span
+                class="status_header">Etat</span></li>
+        <li><a href="#"><span class="hour">21:20</span><span class="destination">HAMBURG</span><span
+                class="flight-no">LX1039</span><span class="status">Expected 21:20</span></a></li>
+        <li><a href="#"><span class="hour">21:50</span><span class="destination">DUSSELDORF</span><span
+                class="flight-no">DS1186</span><span class="status" style="color:red" >Delayed</span></a></li>
+        <li><a href="#"><span class="hour">22:00</span><span class="destination">GENEVA</span><span
+                class="flight-no">FAT6933</span><span class="status">Expected 22:20</span></a></li>
+    </ul>
+
+    <div class="ea-list-description-header"><img src="img/PlaneUp.png"/>Next Departures</div>
+    <ul data-role="listview" style="font-size: 65%; font-weight: 100 !important;">
+        <li class="ea-flightlist-header"><span class="hour_header">Heure</span><span
+                class="destination_header">Origine</span><span class="flight-no_header">No de vol</span><span
+                class="status_header">Etat</span></li>
+        <li><a href="#"><span class="hour">21:20</span><span class="destination">HAMBURG</span><span
+                class="flight-no">LX1039</span><span class="status">Expected 21:20</span></a></li>
+        <li><a href="#"><span class="hour">21:50</span><span class="destination">DUSSELDORF</span><span
+                class="flight-no">DS1186</span><span class="status" style="color:red;">Delayed</span></a></li>
+        <li><a href="#"><span class="hour">22:00</span><span class="destination">GENEVA</span><span
+                class="flight-no">FAT6933</span><span class="status">Expected 22:20</span></a></li>
+    </ul>
+
+
+</div>
+
+
+
+
+<section data-role="layout" data-id="default3">
+    <header data-role="header">
+
+        <div data-role="navbar">
+            <div class="ea-header"><p><img class="ea-logo" src="img/header_logo_front1.png"/></p></div>
+        </div>
+
+    </header>
+
+    <!--View content will render here-->
+
+<div id="map_canvas" style="width:100%;"></div>
+        </div>
+
+    <footer data-role="footer" class="km-ios km-ios6 km-android">
+        <div data-role="tabstrip">
+            <a data-role="button" data-icon="home" href="#home">Home</a>
+            <a data-role="button" data-icon="globe" href="#map">Map</a>
+            <a data-role="button" data-icon="search" href="#">Search</a>
+            <a data-role="button" data-icon="favorites" href="#">My flights</a>
+            <a data-role="button" data-icon="more" href="#">More</a>
+
+        </div>
+    </footer>
+
+
+</section>
+
+	<div data-role="view" data-title="Info" id="info">
+            <div style="width:100%; text-align: center">
+				<h1>Using Google Maps<br />for euroairport</h1>
+			</div>
+        </div>
+		
+		<!-- hook up to the init event of the view and initialize the google map -->
+        <div data-role="view" data-init="buildMap" id="map" data-title="Map">
+            <div id="map_canvas" style="width:100%;"></div>
+        </div>
+
+        <div data-role="layout" data-id="default2">
+            <div data-role="header">
+                <div data-role="navbar">
+                    <span data-role="view-title"></span>
+                </div>
+            </div>
+            
+
+            <div data-role="footer">
+                <div data-role="tabstrip">
+                    <a href="#home" data-icon="home">Info</a>
+                    <a href="#map" data-icon="globe">Map</a>
+                </div>
+            </div>
+        </div>
+
+</section>
+
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/kendo.all.min.js"></script>
+<script>
+   
+
+    
+	
+	  
+			
+</script>
+
+   <script>
+       new kendo.mobile.Application(document.body, {layout: "default2"},{skin:"flat"});
+		
+		//initialize the google map
+        function buildMap(e) {
+            var myOptions = {
+                center: new google.maps.LatLng(47.598791, 7.529124),
+                zoom: 12,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            var mapElement = $("#map_canvas");
+            var container = e.view.content;
+
+            var map = new google.maps.Map(mapElement[0], myOptions);
+        }
+		function onClick(e) {
+        e.preventDefault(); //prevent navigating back
+    }
+		
+    </script>
+</body>
+
+</html>
